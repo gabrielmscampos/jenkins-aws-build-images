@@ -1,0 +1,16 @@
+FROM public.ecr.aws/sam/build-python3.8:latest
+
+# Update environment
+RUN yum update -y
+
+# Install docker
+RUN yum install -y amazon-linux-extras
+RUN PYTHON=python2 amazon-linux-extras install docker
+
+# Install poetry
+RUN pip install poetry==1.4.2
+RUN poetry config virtualenvs.in-project true
+
+# Compatible with initial base image
+ENTRYPOINT []
+CMD ["/bin/bash"]
